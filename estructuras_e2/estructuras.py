@@ -1,30 +1,28 @@
 if __name__ == "__main__":
     print("Este modulo no posee ejecucion principal")
 
-
-
-
-
 def valor(datos):
-    breakpoint()
     """Recibe la estructura de datos del equipo y devuelve una tupla con el nombre del jugador asociado a su valor"""
     # Un lambda para calcular el valor de cada jugador a traves de 3 elementos
     valor = lambda tabla: (tabla[0] * 1.5) + (tabla[1] * 1.25) + tabla[2]
     # retorna un mapeado de "jugador":[][][]
     valor_de_cada_jugador = map(valor, datos.values())
-    print(list(valor_de_cada_jugador))
     return dict(zip(datos.keys(), valor_de_cada_jugador))
 
-def promedio_goles(datos):
+def promedio_goles(datos, matches):
     """Recibe la estructura de datos del equipo y devuelve el promedio de goles por partido del equipo"""
-    goles_totales = sum(gol[0] for gol in datos.values())
-    return (goles_totales / 25)
+    if matches == 0 or matches < 0:
+        return "0 partidos"
+    else: 
+        goles_totales = sum(gol[0] for gol in datos.values())
+        return (goles_totales / matches)
 
-#que venga una variable con la cantidad de goles
-
-def top_scorer(top):
+def top_scorer(top, matches):
     """Dado los goles, devuelve el promedio teniendo en cuenta que sean 25 partidos"""
-    return top/25
+    if matches == 0 or matches < 0: 
+        return "0 partidos"
+    else:
+        return top/matches
 
 def nombres():
     """Retorna la cadena de nombres de los jugadores"""
